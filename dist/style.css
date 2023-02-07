@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;  
+}
+
+#navbar{
+    text-align:right;
+    color: white;
+    
+}
+
+#card{
+    box-shadow: 8px 8px  5px lightslategray;
+}
+
+.container{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 100px auto; 
+}
