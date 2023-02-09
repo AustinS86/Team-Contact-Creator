@@ -140,7 +140,7 @@ const addEmployee = () => {
       type: 'input',
       name: 'school',
       message: "Please enter your Intern's school name.",
-      when: (input) => input.role ==="Intern",
+      when: (input) => input.role === "Intern",
       validate: nameInput => {
         if (nameInput) {
           return true;
@@ -151,11 +151,54 @@ const addEmployee = () => {
       }
     },
     {
-      type:'comfirm',
+      type: 'comfirm',
       name: 'confirmAddEmployee',
       message: 'Would you like to add more Team Members',
       default: false
     }
   ])
-  
-}
+
+    .then(employeeData => {
+
+      let { name, id, email, role ,github, school, confirmAddEmployee } = employeeData;
+      let employee;
+
+      if (role === "Engineer") {
+        employee = new Engineer(name, id, email, github);
+
+        console.log(employee);
+      } else if (role === "intern") {
+        employee = new Intern(name, id, email, school);
+        console.log(employee);
+      }
+      teamArray.push(employee);
+
+      if (confirmAddEmployee) {
+        return addEmployee(teamArray);
+      } else {
+        return teamArray;
+      }
+    })
+};
+const writeFile = data => {
+  fs.writeFile('./dist/index.html', data, err =>{
+    if (err) {
+      console.log(err);
+    return;
+    } else{
+      console.log("Your team contact information has been created!")
+    }
+  })
+};
+
+createManager()
+.then(addEmployee)
+.then(teamArray => {
+  return generateHTML(teamArray);
+})
+.then(pageHTML => {
+  return writeFile(pageHTML);
+})
+.catch(err => {
+  console.log(err);
+});

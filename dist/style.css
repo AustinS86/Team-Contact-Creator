@@ -5,7 +5,6 @@
 #navbar{
     text-align:right;
     color: white;
-    
 }
 
 #card{
@@ -16,4 +15,9 @@
     display: flex;
     justify-content: space-evenly;
     margin: 100px auto; 
+}
+
+#navbar-text{
+    font-size: xx-large;
+    font-weight: bolder;
 }
