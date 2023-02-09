@@ -2,10 +2,11 @@ const createHTML = require('./src/createHTML.js');
 const fs = require('fs');
 const inquirer = require('inquirer');
 const teamArray = [];
+
 //team folders
-const manager = require('./lib/manager.js');
-const engineer = require('./lib/engineer.js');
-const intern = require('./lib/intern.js');
+const Manager = require('./lib/manager.js');
+const Engineer = require('./lib/engineer.js');
+const Intern = require('./lib/intern.js');
 
 const createManager = () => {
   return inquirer.prompt([

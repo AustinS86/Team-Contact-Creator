@@ -1,6 +1,28 @@
 {
-  "dependencies": {
-    "inquirer": "^8.2.4",
+  "name": "team-contact-creator",
+  "description": " creates a team contact profile",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AustinS86/Team-Contact-Creator.git"
+  },
+  "author": "Austin Stancil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AustinS86/Team-Contact-Creator/issues"
+  },
+  "homepage": "https://github.com/AustinS86/Team-Contact-Creator#readme",
+  "devDependencies": {
     "jest": "^29.4.2"
+  },
+  "dependencies": {
+    "inquirer": "^8.2.4"
   }
 }
