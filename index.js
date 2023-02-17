@@ -1,24 +1,24 @@
-const createHTML = require('./src/createHTML.js');
+const generateHTML = require('./src/generateHTML');
 const fs = require('fs');
 const inquirer = require('inquirer');
 const teamArray = [];
 
 //team folders
-const Manager = require('./lib/manager.js');
-const Engineer = require('./lib/engineer.js');
-const Intern = require('./lib/intern.js');
+const Manager = require('./lib/manager');
+const Engineer = require('./lib/enginner');
+const Intern = require('./lib/intern');
 
 const createManager = () => {
   return inquirer.prompt([
     {
       type: 'input',
       name: 'name',
-      message: 'Please enter your managers name.',
+      message: 'What is your managers name?',
       validate: nameInput => {
         if (nameInput) {
           return true;
         } else {
-          console.log("Please enter the manager's name.");
+          console.log("What is your manager's name?");
           return false;
         }
       }
@@ -28,7 +28,7 @@ const createManager = () => {
       name: 'id',
       message: "Please enter your managers ID.",
       validate: nameInput => {
-        if (ifNaN(nameInput)) {
+        if (isNaN(nameInput)) {
           console.log("Please enter the manager's ID.")
           return false;
         } else {
@@ -55,8 +55,8 @@ const createManager = () => {
       name: 'officeNumber',
       message: "Please enter your manager's office number.",
       validate: nameInput => {
-        if (ifNaN(nameInput)) {
-          console.log("Please enter the manager's name.");
+        if (isNaN(nameInput)) {
+          console.log("Please enter an office number.");
           return false;
         } else {
           return true;
@@ -66,7 +66,7 @@ const createManager = () => {
   ])
     .then(managerInput => {
       const { name, id, email, officeNumber } = managerInput;
-      const manager = new manager(name, id, email, officeNumber);
+      const manager = new Manager(name, id, email, officeNumber);
 
       teamArray.push(manager);
       console.log(manager);
@@ -101,7 +101,7 @@ const addEmployee = () => {
       name: 'id',
       message: "Please enter your employee's ID.",
       validate: nameInput => {
-        if (isNAN(nameInput)) {
+        if (isNaN(nameInput)) {
           console.log("Please enter your employee's ID.");
           return false;
         } else {
@@ -114,11 +114,11 @@ const addEmployee = () => {
       name: 'email',
       message: "Please enter your employee's email.",
       validate: email => {
-        vaild = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+        valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
         if (valid) {
           return true;
         } else {
-          console.log("Please a valid email.");
+          console.log("Please enter a valid email.");
           return false;
         }
       }
@@ -146,8 +146,7 @@ const addEmployee = () => {
         if (nameInput) {
           return true;
         } else {
-          console.log("Please enter your Intern's school name.");
-          return false;
+          console.log("Please enter your Intern's school name.")
         }
       }
     },
@@ -168,15 +167,20 @@ const addEmployee = () => {
         employee = new Engineer(name, id, email, github);
 
         console.log(employee);
-      } else if (role === "intern") {
+
+      } else if (role === "Intern") {
         employee = new Intern(name, id, email, school);
         console.log(employee);
       }
+
       teamArray.push(employee);
 
-      if (confirmAddEmployee) {
+      console.log("Confirm: ", confirmAddEmployee);  
+
+      if (confirmAddEmployee) {  
         return addEmployee(teamArray);
       } else {
+        
         return teamArray;
       }
     })
@@ -193,13 +197,13 @@ const writeFile = data => {
 };
 
 createManager()
-.then(addEmployee)
-.then(teamArray => {
-  return generateHTML(teamArray);
-})
-.then(pageHTML => {
-  return writeFile(pageHTML);
-})
-.catch(err => {
-  console.log(err);
-});
+  .then(addEmployee)
+  .then(teamArray => {
+    return generateHTML(teamArray);
+  })
+  .then(pageHTML => {
+    return writeFile(pageHTML);
+  })
+  .catch(err => {
+    console.log(err);
+  });
