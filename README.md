@@ -33,9 +33,14 @@
   Licensed under [MIT](https://choosealicense.com/licenses/mit/) license
 
   ## Screenshot of application
-
+  
+  ![Team-Contact-Creator](https://user-images.githubusercontent.com/117120566/219820685-86f58e28-7db2-4e92-9b7a-4cb336a01487.png)
+  
+  ![image](https://user-images.githubusercontent.com/117120566/219820465-76e7b7a4-807d-45f2-830f-fc7e60f68181.png)
 
   ## Links
+  
+  Walkthrough Video: [Team-Contact-Creator](https://drive.google.com/file/d/1Y-dnTAtf4RDVwkWtkoyNL0QFmxot-P27/view)
 
   ## Contact
 
